@@ -1,0 +1,24 @@
+name: Netlify Deployment
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies and build
+        run: |
+          yarn ci
+          yarn build  # Change this to your build command
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1
+        with:
+          publish-dir: ./build  # Change this to your build output directory
+          production-branch: main  # Change this to your production branch name
+          github-token: ${{ secrets.GITHUB_TOKEN }}
