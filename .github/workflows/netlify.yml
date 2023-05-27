@@ -13,7 +13,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          yarn ci
+          yarn install --frozen-lockfile
           yarn build  # Change this to your build command
 
       - name: Deploy to Netlify
